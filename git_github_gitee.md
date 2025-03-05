@@ -71,6 +71,9 @@ git push 别名 --delete 分支名 | 删除远程分支
     拉取远程库到本地库 git pull 别名 分支名
     克隆远程库到本地库 git clone 远程仓库地址
     删除远程仓库 git remote rm 别名
+    同一个远程仓库别名（如 origin）添加多个 URL 
+        git remote set-url --add origin https://github.com/user/repo1.git
+        git remote set-url --add origin https://gitee.com/user/repo2.git
 ### ssh
 
     配置密钥
