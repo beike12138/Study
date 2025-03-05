@@ -50,21 +50,27 @@ git rm --cached 文件名 | 删除缓存区的文件
 命令名称|作用
 ---|---
 git branch -v | 查看分支
+git branch -a | 查看所有分支
+git branch -r | 查看所有远程分支
 git branch 分支名 | 新建分支
 git checkout 分支名 | 切换分支
 git merge 分支名 | 把指定分支合并到当前分支
-    创建分支 git branch hot-fix
-    切换分支 git checkout hot-fix
+git branch hot-fix | 创建分支
+git checkout hot-fix|切换分支
+git branch -d 分支名|删除本地分支
+git branch -D 分支名 | 如果分支有未合并的更改，git 会提示无法删除。可以使用 -D 强制删除
+git push 别名 --delete 分支名 | 删除远程分支
 ### 合并冲突
     提示冲突后直接vim修改，然后
     git add
     git commit -m "日志信息" 不用加文件名
 ### 远程仓库
     git remote -v 查看远程仓库
-    git remote add 别名 远程仓库地址 （创建远程仓库别名，别名和库名保持一致）
+    git remote add 别名 远程仓库地址 （创建远程仓库别名，别名和库名尽量保持一致）
     推送本地库到远程库 git push 别名 分支名
     拉取远程库到本地库 git pull 别名 分支名
     克隆远程库到本地库 git clone 远程仓库地址
+    删除远程仓库 git remote rm 别名
 ### ssh
 
     配置密钥
