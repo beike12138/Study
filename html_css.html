@@ -29,15 +29,43 @@
             text-indent: 20px;
         }
         .test {
-            font-size: 40px;
+            font-size: 20px;
             background-color: #66ccff;
             /*水平对齐：left、right、center*/
             text-align: center;
             /*行高*/
-            line-height: 200px;
+            line-height: 100px;
             /*垂直对齐：top、bottom、middle*/
             /*vertical-align: middle;*/
 
+        }
+        table {
+            /*表格属性*/
+            border: 1px solid #66ccff;
+            width: 400px;
+            /* 控制表格列度 */
+            table-layout: fixed;
+            /* 控制表格间距 */
+            border-spacing: 10px;
+            /* 合并相邻的单元格的边框 */
+            border-collapse: collapse;
+            /* 隐藏没有用的空单元格 */
+            empty-cells: hide;
+
+
+        }
+        th,td {
+            border: 1px solid #ccff66;
+        }
+        .background {
+            /* 背景相关的属性 */
+            width: 400px;
+            height: 100px;
+            background-color: #66ccff;
+            background-image: url("https://zzz.mihoyo.com/_nuxt/img/logo.1e072ee.png");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 100px 100px;
         }
 
     </style>
@@ -46,5 +74,42 @@
     <h2 class="font" id="hs">HTML测试</h2>
     <p class="text">CSS测试 qwertyuiop]</p>
     <div class="test">文本居中测试</div>
+    <table>
+        <caption>人员信息</caption>
+        <thead>
+            <tr>
+                <th>序号</th>
+                <th>姓名</th>
+                <th>年龄</th>
+                <th>性别</th>
+                <th>政治面貌</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>张三</td>
+                <td>18</td>
+                <td>男</td>
+                <td>党员</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>李四</td>
+                <td>20</td>
+                <td>女</td>
+                <td>群众</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>王五</td>
+                <td>22</td>
+                <td>男</td>
+                <td>党员</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="background">你好啊</div>
+    <div></div>
 </body>
 </html>
