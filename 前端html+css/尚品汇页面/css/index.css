@@ -1,0 +1,51 @@
+/* 基础设施 */
+.container {
+    width: 1190px;
+    margin: 0 auto;
+}
+/* 导航栏样式开始 */
+.topbar {
+    height: 30px;
+    background-color: #ECECEC;
+}
+.top-welcome {
+    height: 30px;
+    line-height: 30px;
+    font-size: 0;
+}
+.top-welcome span,.top-welcome a {
+    font-size: 12px;
+}
+.top-welcome .hello {
+    color: #666666;
+    margin-right: 28px;
+}
+.top-welcome .login {
+    padding-right: 10px;
+    border-right: 1px solid #666666;
+}
+.top-welcome .register {
+    padding-left: 10px;
+}
+
+.top-nav li {
+    height: 30px;
+    line-height: 30px;
+    font-size: 12px;
+    float: left;
+}
+.top-nav li a {
+    padding-left: 15px;
+    padding-right: 15px;
+    border-right: 1px solid #666666;
+}
+.top-nav li:first-child a {
+    padding-left: 0;
+    border-left: none;
+}
+.top-nav li:last-child a {
+    padding-right: 0;
+    border-right: none;
+}
+
+/* 导航栏样式结束 */
