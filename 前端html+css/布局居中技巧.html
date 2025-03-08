@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>布局居中技巧</title>
+</head>
+<body>
+    <style>
+        .outer {
+            width: 200px;
+            height: 200px;
+            background-color: #66ccff;
+            overflow: auto;
+        }
+        .inner {
+            width: 50px;
+            height: 50px;
+            background-color: yellow;
+            margin: 0 auto;
+            margin-top: 75px;
+            text-align: center;
+            line-height: 50px;
+        }
+
+        .outer2 {
+            width: 200px;
+            height: 200px;
+            background-color: #66ccff;
+            text-align: center;
+            line-height: 200px;
+        }
+        .inner2 {
+            font-size: 25px;
+            background-color: yellow;
+        }
+
+        .outer3 {
+            width: 200px;
+            height: 200px;
+            background-color: #66ccff;
+            text-align: center;
+            line-height: 200px;
+            font-size: 0px;
+        }
+        .inner3 {
+            font-size: 20px;
+            background-color: #fff;
+            vertical-align: middle;
+        }
+        .image {
+            width: 50px;
+            height: 50px;
+            background-color: yellow;
+            vertical-align: middle;
+        }
+    </style>
+    
+    <div class="outer">
+        <div class="inner">
+            inner
+        </div>
+    </div>
+    <hr>
+    <div class="outer2">
+        <span class="inner2">粗来玩啊</span>
+    </div>
+    <br>
+    <div class="outer3">
+        <span class="inner3">出来玩啊</span>
+        <img class="image" src="https://zzz.mihoyo.com/_nuxt/img/logo.1e072ee.png" alt="zzz">
+
+    </div>
+    
+    <!-- 元素之间的空白问题、行内块的幽灵空白问题 -->
+     <!-- 设置父元素的font-size为0，然后设置子元素为正常字体大小，即可解决。 -->
+</body>
+</html>
