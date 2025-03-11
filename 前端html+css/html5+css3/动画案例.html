@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>动画</title>
+</head>
+<body>
+    <style>
+        .outer {
+            height: 100px;
+            width: 1000px;
+            border: 1px solid black;
+        }
+        .inner {
+            height: 100px;
+            width: 100px;
+            background-color: deepskyblue;
+            animation-name: wangyoudong;
+            animation-duration: 1s;
+            /* 动画延迟时间 */
+            animation-delay: 1s;
+            /* 设置动画的方式 */
+            animation-timing-function: linear;
+            /* 动画次数 */
+            animation-iteration-count: infinite;
+            /* 动画方向 */
+            animation-direction: alternate;
+            /* 动画以外的状态 */
+            animation-fill-mode: forwards;
+        }
+        .outer:hover .inner{
+            animation-play-state: paused;
+        }
+        @keyframes wangyoudong {
+            0% {
+                transform: translate(0, 0);
+            }
+            50% {
+                transform: translate(900px, 0);
+            }
+            100% {
+                transform: translate(0, 0);
+            }
+        }
+        @keyframes wangyoudong {
+            from {
+                transform: translate(0, 0);
+            }
+            to {
+                transform: translate(900px, 0) rotate(360deg);
+                background: pink;
+                border-radius: 50%;
+            }
+        }
+    </style>
+    <div class="outer">
+        <div class="inner"></div>
+    </div>
+</body>
+</html>

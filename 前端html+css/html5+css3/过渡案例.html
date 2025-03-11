@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>过渡</title>
+</head>
+<body>
+    <style>
+        .outer {
+            width: 400px;
+            height: 225px;
+            position: relative;
+            overflow: hidden;
+        }
+        img {
+            width: 400px;
+            height: 225px;
+        }
+        .mask {
+            position: absolute;
+            width: 400px;
+            height: 225px;
+            background-color: black;
+            font-size: 100px;
+            color: white;
+            text-align: center;
+            line-height: 225px;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: 0.3s linear all;
+        }
+        img {
+            transition: 0.3s linear all;
+        }
+        .outer:hover .mask {
+            opacity: 0.5;
+        }
+        .outer:hover img {
+            transform: scale(1.5);
+        }
+        
+    </style>
+    <div class="outer">
+        <img src="https://act-webstatic.mihoyo.com/event-static/2023/08/15/2b521d84a19cb9e3d22d2bc117680b0b_1199526372846925351.jpg?x-oss-process=image/quality,Q_80/resize,m_lfit,s_500" alt="">
+        <div class="mask">
+            优菈
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>H5新特性</title>
+    <link rel="shortcut icon" href="https://ys.mihoyo.com/main/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+    <style>
+        .box1 {
+            width: 200px;
+            height: 200px;
+            background-color: red;
+            box-sizing: border-box;
+            padding: 20px;
+            margin: 20px;
+            border: 10px solid black;
+            overflow: hidden;
+            resize: both;
+            /* box-shadow各种写法 */
+                        /* 
+            基础阴影示例：仅设置水平和垂直偏移量，无模糊和扩散效果。阴影会直接从元素边缘向外扩展20px。
+            */
+            box-shadow: 20px 20px rgba(0, 0, 0, 0.5);
+            
+            /* 
+            模糊阴影示例：添加20px模糊半径，使阴影边缘变得柔和。此时阴影整体向右下20px偏移，但边缘过渡更自然。
+            */
+            box-shadow: 20px 20px 20px rgba(0, 0, 0, 0.5);
+            
+            /* 
+            扩散阴影示例：在前两个参数基础上增加20px扩散半径，会使阴影区域扩大，产生更明显的投影效果。
+            */
+            box-shadow: 20px 20px 20px 20px rgba(0, 0, 0, 0.5);
+            /* 
+            阴影混合示例：设置两个阴影，一个浅灰色，一个深灰色，它们会混合产生一种深灰色阴影。
+            */
+            box-shadow: 20px 20px 20px rgba(0, 0, 0, 0.5), 20px 20px 20px rgba(0, 0, 0, 0.5);
+            opacity: 0.5;
+            
+        }
+    </style>
+    <div style="font-size: 20px;">
+        <!-- H5新增语义化标签 -->
+        header footer nav section article aside figcaption figure figcaption
+        <br><br>
+        <hr>
+        <header>
+            header: 头部
+        </header>
+        <footer>
+            footer: 底部
+        </footer>
+        <nav>
+            nav: 导航
+        </nav>
+        <section>
+            section: 节
+        </section>
+        <article>
+            article: 文章
+        </article>
+        <aside>
+            aside: 侧边栏
+        </aside>
+        <figure>
+            figure: 插图
+        </figure>
+        <figcaption>
+            figcaption: 插图标题
+        </figcaption>
+        <hr>
+        H5新增语义化标签
+        <!-- H5新增语义化标签 -->
+        <br><br>
+        手机电量
+        <meter value="90" min="0" max="100" low="20" high="80" optimum="90"></meter>
+        <span>当前进度</span>
+        <progress value="50" max="100"></progress>
+        <hr>
+        <span>H5新增列表标签</span><br><br>
+        <form action="">
+            <input type="text" list="mydata">
+            <button>搜索</button>
+        </form>
+        <datalist id="mydata">
+            <option value="周杰伦">周杰伦</option>
+            <option value="周冬雨">周冬雨</option>
+            <option value="马冬梅">马冬梅</option>
+            <option value="温兆伦">温兆伦</option>
+        </datalist>
+        <details>
+            <summary>周杰伦</summary>
+            周杰伦是一个歌手，他喜欢唱歌
+        </details>
+        <hr><span>新增文本标签</span><br><br>
+        <ruby>
+            <span>魑魅魍魉</span>
+            <rt>
+                chī mèi wǎng liǎng
+            </rt>
+        </ruby>
+        <p>Lorem ipsum <mark>dolor</mark> sit amet consectetur adipisicing elit.</p>
+        <hr><span>新增表单控件属性</span><br><br>
+        <form action="" novalidate>
+            账户：<input 
+                    type="text" 
+                    name="account" 
+                    placeholder="请输入账号"
+                    required
+                    autofocus
+                    autocomplete="on"
+                    pattern="\w{6,12}"
+                    >
+            <br>
+            密码：<input type="password" name="password">
+            <br>
+            性别：
+            <input type="radio" value="male" name="gender">男
+            <input type="radio" value="female" name="gender">女
+            <br>
+            爱好：
+            <input type="checkbox" value="football" name="hobby">足球
+            <input type="checkbox" value="basketball" name="hobby">篮球
+            <input type="checkbox" value="swimming" name="hobby">游泳
+            <br>
+            其他：
+            <textarea name="other" ></textarea>
+            <br>
+            <button>提交</button>
+            <hr>
+            email：<input type="email" name="email">
+            <br>
+            url：<input type="url" name="url">
+            <br>
+            数字：<input type="number" name="number">
+            <br>
+            搜索：<input type="search" name="search">
+            <br>
+            电话：<input type="tel" name="tel">
+            <br>
+            范围：<input type="range" name="range">
+            <br>
+            颜色：<input type="color" name="color">
+            <br>
+            date：<input type="date" name="date">
+            <br>
+            月份：<input type="month" name="month">
+            <br>
+            周：<input type="week" name="week">
+            <br>
+            时间：<input type="time" name="time">
+            <br>
+            日期时间：<input type="datetime-local" name="datetime-local">
+            <br>
+        </form>
+        <hr><span>新增视频标签</span><br><br>
+        <video src="" controls muted loop poster="" preload="auto"></video>
+        <hr><span>新增音频标签</span><br><br>
+        <audio src="./01.LOVE2000.flac" controls muted loop preload="auto"></audio>
+    </div>
+    <h2>新增盒子相关属性</h2>
+    <div class="box1">
+        新增盒子相关属性
+    </div>
+    <h2>背景图新增属性</h2>
+        <h3>background-origin</h3>
+        作用：定义背景图像的定位起点（即背景原点）。
+        可选值：
+        padding-box（默认）：背景图像以元素的内边距区域（padding）为原点定位。
+        border-box：背景图像以元素的边框（border）为原点定位。
+        content-box：背景图像以元素的内容区域（content）为原点定位
+        <h3>background-clip</h3>
+        定义背景绘制的区域（即背景的“裁剪范围”）。
+        可选值：
+        border-box（默认）：背景绘制到边框内（包含边框区域）。
+        padding-box：背景仅绘制到内边距区域（不包含边框）。
+        content-box：背景仅绘制到内容区域。
+        text（实验性）：背景裁剪为文字形状（用于文字背景效果）。
+        典型用途：通过裁剪背景到内容区域，避免背景与边框重叠。
+    <div style="height: 500px;">
+    </div>
+</body>
+
+</html>
