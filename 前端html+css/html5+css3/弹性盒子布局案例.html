@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>弹性盒子布局小案例</title>
+</head>
+
+<body>
+    <style>
+        * {
+            font-family: Arial, Helvetica, sans-serif;
+            font-style: 14px;
+            margin: 0;
+            padding: 0;
+            border: 0;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        html,
+        body {
+            height: 100%;
+            width: 100%;
+        }
+
+        body {
+            background-image: url('https://uploadstatic.mihoyo.com/contentweb/20200211/2020021114220951905.jpg');
+            background-size: cover;
+        }
+
+        .page-header {
+            height: 70px;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .header-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-nav li {
+            margin-right: 20px;
+            border: 1px solid #fff;
+            border-radius: 8px;
+            padding: 10px;
+        }
+
+        .header-nav li a {
+            color: #fff;
+            font-size: 20px;
+        }
+
+        .content {
+            height: calc(100vh - 70px);
+            display: flex;
+        }
+
+        .concent-nav {
+            height: 300px;
+            width: 1000px;
+            /* background-color: skyblue; */
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            border-radius: 10px;
+            
+        }
+
+        .concent-nav div {
+            height: 200px;
+            width: 200px;
+            background-color: #fff;
+            background-size: contain;
+            position: relative;
+            transition: 0.15s linear;
+        }
+        .concent-nav div:hover{
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            transform: matrix(1.1, 0, 0, 1.1, 0, 0);
+        }
+
+        .concent-nav div a {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .concent-nav div img {
+            height: 50px;
+            width: 50px;
+        }
+
+        .concent-nav div span {
+            font-size: 20px;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translate(-50%, 100%);
+        }
+
+        .concent-nav .item1 {
+            background-image: url('./image/lisa.png');
+            background-color: #302257;
+            border-radius: 10px;
+        }
+
+        .concent-nav .item2 {
+            background-image: url('./image/kaiya.png');
+            background-color: #234660;
+            border-radius: 10px;
+
+        }
+
+        .concent-nav .item3 {
+            background-image: url('./image/babala.png');
+            background-color: #D7C8B3;
+            border-radius: 10px;
+
+        }
+
+        .concent-nav .item4 {
+            background-image: url('./image/diluke.png');
+            background-color: #CA3F35;
+            border-radius: 10px;
+
+        }
+    </style>
+    <header class="page-header">
+        <a href="#" class="logo">
+            <img src="./image/logo.png" alt="genshin">
+        </a>
+        <ul class="header-nav">
+            <li><a href="#">西风骑士团</a></li>
+            <li><a href="#">蒙德大教堂</a></li>
+            <li><a href="#">晨曦酒庄</a></li>
+            <li><a href="#">猫尾酒馆</a></li>
+        </ul>
+    </header>
+    <div class="content">
+        <div class="concent-nav">
+            <div class="item1">
+                <a href="#">
+                    <img src="https://upload-bbs.miyoushe.com/upload/2023/06/04/298130464/1cc67150ad3a9a75bbfa2bd24f288525_3539348673413691912.png?x-oss-process=image//resize,s_600/quality,q_80/auto-orient,0/interlace,1/format,png"
+                        alt="">
+                </a>
+                <span>丽莎</span>
+            </div>
+            <div class="item2">
+                <a href="#">
+                    <img src="https://upload-bbs.miyoushe.com/upload/2023/06/04/298130464/01a053a068d5356e4232fff0f30a9205_5140876086647630638.png?x-oss-process=image//resize,s_600/quality,q_80/auto-orient,0/interlace,1/format,png"
+                        alt="">
+                </a>
+                <span>凯亚</span>
+            </div>
+            <div class="item3">
+                <a href="#">
+                    <img src="https://upload-bbs.miyoushe.com/upload/2023/06/04/298130464/fe5bfe528fea6d1cf4bf027e11267aa0_889267018846107133.png?x-oss-process=image//resize,s_600/quality,q_80/auto-orient,0/interlace,1/format,png"
+                        alt="">
+                </a>
+                <span>芭芭拉</span>
+            </div>
+            <div class="item4">
+                <a href="#">
+                    <img src="https://upload-bbs.miyoushe.com/upload/2023/06/04/298130464/b45e354f314c24ac46a2d948323c00b9_8479952354828172052.png?x-oss-process=image//resize,s_600/quality,q_80/auto-orient,0/interlace,1/format,png"
+                        alt="">
+                </a>
+                <span>迪卢克</span>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
