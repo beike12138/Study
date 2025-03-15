@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>JS + CSS Clock</title>
+  <link rel="icon" href="https://fav.farm/🔥" />
+</head>
+
+<body>
+
+
+  <div class="clock">
+    <div class="clock-face">
+      <div class="hand hour-hand"></div>
+      <div class="hand min-hand"></div>
+      <div class="hand second-hand"></div>
+    </div>
+  </div>
+
+
+  <style>
+    html {
+      background: #018DED url('./881-1500x1000-blur_5.jpg');
+      background-size: cover;
+      font-family: 'helvetica neue';
+      text-align: center;
+      font-size: 10px;
+    }
+
+    body {
+      margin: 0;
+      font-size: 2rem;
+      display: flex;
+      flex: 1;
+      min-height: 100vh;
+      align-items: center;
+    }
+
+    .clock {
+      width: 30rem;
+      height: 30rem;
+      border: 20px solid white;
+      border-radius: 50%;
+      margin: 50px auto;
+      position: relative;
+      padding: 2rem;
+      box-shadow:
+        0 0 0 4px rgba(0, 0, 0, 0.1),
+        inset 0 0 0 3px #EFEFEF,
+        inset 0 0 10px black,
+        0 0 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .clock-face {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transform: translateY(-3px);
+      /* account for the height of the clock hands */
+    }
+
+    .clock-face:after {
+      content: '';
+      display: block;
+      height: 30px;
+      width: 30px;
+      background-color: #fff;
+      border-radius: 100%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .hand {
+      position: absolute;
+      height: 100%;
+      width: 100%;
+    }
+
+    .second-hand::after {
+      content: '';
+      display: block;
+      position: absolute;
+      left: 50%;
+      bottom: 50%;
+      width: 4px;
+      height: 50%;
+      background-color: red;
+      transform: translate(-50%, 0);
+    }
+
+    .min-hand::after {
+      content: '';
+      display: block;
+      position: absolute;
+      left: 50%;
+      bottom: 50%;
+      width: 7px;
+      height: 40%;
+      background-color: white;
+      transform: translate(-50%, 0);
+    }
+
+    .hour-hand::after {
+      content: '';
+      display: block;
+      position: absolute;
+      left: 50%;
+      bottom: 50%;
+      width: 11px;
+      height: 30%;
+      background-color: white;
+      transform: translate(-50%, 0);
+    }
+  </style>
+
+  <script>
+    ; (function () {
+
+      const hour = document.querySelector('.hour-hand')
+      const min = document.querySelector('.min-hand')
+      const second = document.querySelector('.second-hand')
+
+      function setDate() {
+        let date = new Date()
+
+        let hourDeg = date.getHours() * 30 + date.getMinutes() * (30/60) //(360/12) 
+        let minDeg = date.getMinutes() * 6 + date.getSeconds() * (6/60) //(360/60) 
+        let secondDeg = date.getSeconds() * 6 //(360/6)
+
+        hour.style.transform = `rotate(${hourDeg}deg)`
+        min.style.transform = `rotate(${minDeg}deg)`
+        second.style.transform = `rotate(${secondDeg}deg)`
+      }
+
+      setDate()//初始化页面
+
+      //计时器 
+      // setInterval 每秒钟执行一次setInterval
+      // setInterval(setDate, 1000)
+
+      //setTimeout 每隔一秒暂停一次
+      // function timeoutHandler() {
+      //   setDate()
+      //   setTimeout(timeoutHandler, 1000)
+      // }
+      // setTimeout(timeoutHandler, 1000)
+
+      //window.requestAnimationFrame() 方法会告诉浏览器你希望执行一个动画。
+      // 它要求浏览器在下一次重绘之前，调用用户提供的回调函数。
+      // 对回调函数的调用频率通常与显示器的刷新率相匹配。虽然 75hz、120hz 和 144hz 也被广泛使用，但是最常见的刷新率还是 60hz（每秒 60 个周期 / 帧）。为了提高性能和电池寿命，大多数浏览器都会暂停在后台选项卡或者隐藏的 < iframe > 中运行的 requestAnimationFrame()。
+      function animationhandler() {
+        setDate()
+        window.requestAnimationFrame(animationhandler)
+      }
+      window.requestAnimationFrame(animationhandler)
+    })()
+
+  </script>
+</body>
+
+</html>
