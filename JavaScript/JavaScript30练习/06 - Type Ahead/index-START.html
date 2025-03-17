@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Type Ahead 👀</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="https://fav.farm/🔥" />
+</head>
+
+<body>
+
+  <form class="search-form">
+    <input type="text" class="search" placeholder="City or State">
+    <ul class="suggestions">
+      <li>Filter for a city</li>
+      <li>or a state</li>
+    </ul>
+  </form>
+  <script>
+    const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
+
+    //在cities里筛选出符合输入框当前值的项
+    function findMatches(inputWords, cities) {
+      return cities.filter(place => {
+        const regex = new RegExp(inputWords, 'gi')
+        return place.city.match(regex) || place.state.match(regex)
+      })
+    }
+
+    //通过正则表达式将数字格式化为千位分隔符的形式
+    function numberWithCommas(x) {
+        return x.toString().replace(/\B(?=(\d{4})+(?!\d))/g, ',');
+      }
+    function displayHandler() {
+      //在JavaScript中，当函数作为事件处理函数被调用时，`this`通常指向触发事件的DOM元素。这里，`searchInput`是通过`document.querySelector('.search')`获取的输入框元素，因此当用户在输入框中输入并触发`keyup`或`change`事件时，`displayMatches`中的`this`应该指向该输入框元素本身。 因此，`this.value`就是输入框当前的值
+      const arrayMatched = findMatches(this.value, cities)
+      const html = arrayMatched.map(place => {
+        const regex = new RegExp(this.value, 'gi')
+        const cityName = place.city.replace(regex, `<span class="hl">${this.value}</span>`)
+        const stateName = place.state.replace(regex, `<span class="hl">${this.value}</span>`)
+
+        return `
+          <li>
+          <span class="name">${cityName}, ${stateName}</span>
+          <span class="population">${numberWithCommas(place.population)}</span>
+          </li>
+          `
+      }).join('')
+      suggestions.innerHTML = html
+    }
+
+    const cities = []
+    fetch(endpoint)
+      .then(res => res.json())
+      .then(data => cities.push(...data))
+    console.log(cities);
+
+    const searchInput = document.querySelector('.search')
+    const suggestions = document.querySelector('.suggestions')
+
+    searchInput.addEventListener('change', displayHandler)
+    searchInput.addEventListener('keyup', displayHandler)
+
+  </script>
+</body>
+
+</html>
