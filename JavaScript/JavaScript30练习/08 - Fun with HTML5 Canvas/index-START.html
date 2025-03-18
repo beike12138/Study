@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML5 Canvas</title>
+  <link rel="icon" href="https://fav.farm/🔥" />
+</head>
+
+<body>
+
+  <style>
+    html,
+    body {
+      margin: 0;
+      background-color: skyblue;
+    }
+
+    canvas {
+      width: 800px;
+      height: 800px;
+      border: 1px solid black;
+      background-color: pink;
+    }
+  </style>
+
+  <canvas id="draw"></canvas>
+
+  <script>
+    ; (function () {
+      const canvas = document.querySelector('#draw');
+      const ctx = canvas.getContext("2d");
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      //设置画笔颜色
+      ctx.strokeStyle = '#BADA55';
+      //设置画笔转折点样式，圆润
+      ctx.lineJoin = 'round';
+      //设置线条的两端样式 圆润
+      ctx.lineCap = 'round';
+      //设置线条的粗细
+      ctx.lineWidth = 100;
+
+      let isDrawing = false;
+      let lastX = 0;
+      let lastY = 0;
+
+      canvas.addEventListener('mousedown', (e) => {
+        isDrawing = true;
+        [lastX, lastY] = [e.offsetX, e.offsetY];
+        console.log('lastX;', lastX, 'lastY:', lastY);
+      })
+    })()
+
+  </script>
+
+
+
+</body>
+
+</html>
