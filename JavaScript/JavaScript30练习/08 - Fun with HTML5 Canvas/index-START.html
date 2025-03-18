@@ -14,25 +14,55 @@
     html,
     body {
       margin: 0;
-      background-color: skyblue;
+      padding: 0;
+      background-color: deepskyblue;
+      /* width: 100%;
+      height: 100%; */
     }
 
     canvas {
-      width: 800px;
-      height: 800px;
-      border: 1px solid black;
       background-color: pink;
     }
   </style>
 
-  <canvas id="draw"></canvas>
+  <canvas width="800" height="800" id="draw"></canvas>
 
   <script>
     ; (function () {
       const canvas = document.querySelector('#draw');
       const ctx = canvas.getContext("2d");
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+
+      //不行，底部无法填充完整 原因不明 css width: 100%;height: 100 %; 仍然会显示滚动条
+      //获取body的计算后的宽高
+      // let bodyWidth = window.getComputedStyle(document.body).getPropertyValue("width");
+      // let bodyHeight = window.getComputedStyle(document.body).getPropertyValue("height");
+      // console.log(bodyWidth, bodyHeight);
+      // console.log(window.innerWidth, window.innerHeight);
+      // canvas.width = parseInt(bodyWidth.slice(0, -2));
+      // canvas.height = parseInt(bodyHeight.slice(0, -2));
+      // 更改画布大小，铺满整个屏幕
+
+      //不行，会有滚动条
+      // canvas.width = window.innerWidth;
+      // canvas.height = window.innerHeight;
+
+      //不行，会偏移
+      // canvas.style.width = window.innerWidth + 'px';
+      // canvas.style.height = window.innerHeight + 'px';
+      // //加上这段会无法使用画笔
+      // window.onresize = resize;
+      // resize();
+
+      // 不行，左右没有了滚动条，但是上下有滚动条
+      // canvas.height = window.innerHeight;
+      // canvas.width = document.body.clientWidth;
+
+      //不行，问题跟第一种方法一样，camvas无法铺满底部
+      canvas.height = document.body.clientHeight;
+      canvas.width = document.body.clientWidth;
+
+      
+      console.log(canvas.width, canvas.height);
       //设置画笔颜色
       ctx.strokeStyle = '#BADA55';
       //设置画笔转折点样式，圆润
@@ -45,12 +75,55 @@
       let isDrawing = false;
       let lastX = 0;
       let lastY = 0;
+      let hue = 0;
+      let direction = true;
+
+      function draw(e) {
+        if (!isDrawing) {
+          return;
+
+        }
+        //开始画一个新的路径，或者沿着之前的路径继续画
+        ctx.beginPath();
+        //设置画笔颜色
+        ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;
+        //画笔起点移动到
+        ctx.moveTo(lastX, lastY);
+        //画笔终点设置为当前的鼠标位置
+        ctx.lineTo(e.offsetX, e.offsetY);
+        //开始画
+        ctx.stroke();
+        //绘画完成后更新lastX和lastY的值
+        [lastX, lastY] = [e.offsetX, e.offsetY];
+        // console.log('lastX;', lastX, 'lastY:', lastY);
+        // console.log('offsetX:', e.offsetX, 'offsetY:', e.offsetY)
+
+        hue++;
+        if (hue >= 360) {
+          hue = 0;
+        }
+
+        if (ctx.lineWidth >= 100 || ctx.lineWidth <= 1) {
+          direction = !direction;
+        }
+
+        if (direction) {
+          ctx.lineWidth++;
+        } else {
+          ctx.lineWidth--;
+        }
+
+      }
 
       canvas.addEventListener('mousedown', (e) => {
         isDrawing = true;
         [lastX, lastY] = [e.offsetX, e.offsetY];
         console.log('lastX;', lastX, 'lastY:', lastY);
       })
+
+      canvas.addEventListener('mousemove', draw);
+      canvas.addEventListener('mouseup', () => isDrawing = false);
+      canvas.addEventListener('mouseout', () => isDrawing = false);
     })()
 
   </script>
