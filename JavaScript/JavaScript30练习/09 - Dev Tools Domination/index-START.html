@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Console Tricks!</title>
+  <link rel="icon" href="https://fav.farm/🔥" />
+</head>
+
+<body>
+
+  <p onClick="makeGreen()">×BREAK×DOWN×</p>
+
+  <script>
+    const dogs = [{ name: 'Snickers', age: 2 }, { name: 'hugo', age: 8 }];
+
+    function makeGreen() {
+      const p = document.querySelector('p');
+      p.style.color = '#BADA55';
+      p.style.fontSize = '50px';
+    }
+
+    let console = {
+      devFlag: true,
+      log: function (...args) {
+        if (!this.devFlag) return;
+        window.console.log(...args);
+      },
+      warn: function (...args) {
+        if (!this.devFlag) return;
+        window.console.warn(...args);
+      },
+      error: function (...args) {
+        if (!this.devFlag) return;
+        window.console.error(...args);
+      },
+      info: function (...args) {
+        if (!this.devFlag) return;
+        window.console.info(...args);
+      },
+      assert: function (...args) {
+        if (!this.devFlag) return;
+        window.console.assert(...args);
+      },
+      dir: function (...args) {
+        if (!this.devFlag) return;
+        window.console.dir(...args);
+      },
+      groupCollapsed: function (...args) {
+        if (!this.devFlag) return;
+        window.console.groupCollapsed(...args);
+      },
+      groupEnd: function (...args) {
+        if (!this.devFlag) return;
+        window.console.groupEnd(...args);
+      },
+      count: function (...args) {
+        if (!this.devFlag) return;
+        window.console.count(...args);
+      },
+      time: function (...args) {
+        if (this.devFlag) return;
+        window.console.time(...args);
+      },
+      timeEnd: function (...args) {
+        if (this.devFlag) return;
+        window.console.timeEnd(...args);
+      },
+
+
+    }
+    // Regular 普通的输出
+    console.log("console.log: " + 'hello', 'world', 123, { name: 'nihao' }, [1, 2, 3]);
+
+    // Interpolated c语言类打印输出
+    const name = 'han';
+    console.log("Hello I am a %s string!", '💩');
+    console.log("Hello I am a %d int!", 3.1415);
+    console.log("Hello I am a %f float!", 3.1415);
+    //无法使用保留两位小数，consol.log已经被覆写 没被覆写也不行
+    console.log("Hello I am a %.2f float!", 3.1415);
+    console.log(`Hello I am a ${name} string!`);
+
+    // Styled
+    console.log('%c I am some great text', 'font-size:50px; background:red; text-shadow: 10px 10px 0 blue');
+
+    // warning!
+    console.warn('OH NOOO');
+
+    // Error :|
+    console.error('Shit!');
+
+    // Info
+    // console.log
+    //   普通输出，用于调试信息的一般性记录。
+    //   格式：黑色文本（不同浏览器可能有差异）。
+
+    //   console.info
+    //   信息类型输出，通常带有蓝色信息图标（如 i 标志），用于非紧急但需注意的信息。
+    //   格式：蓝色文本（部分浏览器会显示图标）。 
+    // 并没有什么区别
+    console.info('Crocodiles eat 3-4 people per year');
+
+    // Testing
+    console.assert(false, "前面判断结果为false,输出该结果");
+    console.assert(0, "前面判断结果为0,输出该结果");
+    console.assert(null, "前面判断结果为null,输出该结果");
+    console.assert(NaN, "前面判断结果为NaN,输出该结果");
+    console.assert(undefined, "前面判断结果为undefined,输出该结果");
+
+    // clearing 清屏
+    // ctrl + l
+
+    // Viewing DOM Elements 输出DOM元素
+    let p = document.querySelector('p');
+    console.log(p); //<p onclick="makeGreen()">×BREAK×DOWN×</p> 显示 DOM 元素的 简略字符串表示（如 [object HTMLParagraphElement]），可能包含部分属性（如 innerHTML）。
+
+    console.dir(p); //以 可交互的树形结构 展示 DOM 元素的 所有属性和方法，支持逐层展开查看。
+
+    // Grouping together
+    dogs.forEach(dog => {
+      console.groupCollapsed(`${dog.name}`);
+      console.log(`This is ${dog.name}`);
+      console.log(`${dog.name} is ${dog.age} years old`);
+      console.log(`${dog.name} is ${dog.age * 7} dog years old`);
+      console.groupEnd(`${dog.name}`);
+    });
+
+    // counting
+    console.count('Wes');
+    console.count('Wes');
+    console.count('Steve');
+    console.count('Steve');
+    console.count('Wes');
+    console.count('Steve');
+    console.count('Wes');
+    console.count('Steve');
+    console.count('Steve');
+    console.count('Steve');
+    console.count('Steve');
+    console.count('Steve');
+
+    // timing
+    //test1 test2 都没用块包裹 test1 i j 暴露在外，test2 i j 被for块包裹了，i j 不暴露在外
+    console.time('test1');
+    let i = 0;
+    let j = 0;
+    for (i = 0; i < 100000000; i++) {
+      j = i;
+    }
+    console.timeEnd('test1');//test1: 641.403076171875 ms
+
+    console.time('test2');
+    for (let i = 0; i < 100000000; i++) {
+      let j = i;
+    }
+    console.timeEnd('test2');//test2: 168.1298828125 ms
+
+    // test1使用块{}包裹 和 test2使用块{}包裹 耗时差不多
+    {
+      console.time('test1使用块{}包裹');
+      let i = 0;
+      let j = 0;
+      for (i = 0; i < 100000000; i++) {
+        j = i;
+      }
+      console.timeEnd('test1使用块{}包裹');// test1使用块{ } 包裹: 178.97412109375 ms
+    }
+
+    {
+      console.time('test2使用块{}包裹');
+      for (let i = 0; i < 100000000; i++) {
+        let j = i;
+      }
+      console.timeEnd('test2使用块{}包裹');// test2使用块{ } 包裹: 188.85498046875 ms
+    }
+
+    // test3 test4 都未没用块包裹 test3 i1 暴露在外，test4 j2 暴露在外 耗时差不多
+    console.time('test3');
+    let i1 = 0;
+    for (i1 = 0; i1 < 100000000; i1++) {
+      let j1 = i1;
+    }
+    console.timeEnd('test3'); //test3: 368.987060546875 ms
+
+    console.time('test4');
+    let j2 = 0;
+    for (let i2 = 0; i2 < 100000000; i2++) {
+      j2 = i2;
+    }
+    console.timeEnd('test4'); //test4: 355.783203125 ms
+
+    {
+      console.time('test5');
+      let i1 = 0;
+      for (i1 = 0; i1 < 100000000; i1++) {
+        let j1 = i1;
+      }
+      console.timeEnd('test5'); //test5: 187.072021484375 ms
+    }
+
+    {
+      console.time('test6');
+      let j2 = 0;
+      for (let i2 = 0; i2 < 100000000; i2++) {
+        j2 = i2;
+      }
+      console.timeEnd('test6'); //test6: 199.561767578125 ms
+    }
+  </script>
+</body>
+
+</html>
