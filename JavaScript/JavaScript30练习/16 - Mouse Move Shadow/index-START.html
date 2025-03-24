@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Mouse Shadow</title>
+  <link rel="icon" href="https://fav.farm/🔥" />
+</head>
+
+<body>
+
+  <div class="hero">
+    <h1 contenteditable>🔥WOAH!</h1>
+  </div>
+
+  <style>
+    html {
+      color: black;
+      font-family: sans-serif;
+    }
+
+    body {
+      margin: 0;
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: black;
+    }
+
+    h1 {
+      text-shadow: 10px 10px 0 rgba(0, 0, 0, 1);
+      font-size: 100px;
+    }
+  </style>
+
+  <script>
+    ; (function () {
+      //设置偏移量
+      const walk = 500;
+      let text = document.querySelector('h1');
+      document.querySelector('.hero').addEventListener('mousemove', function (e) {
+        // console.log(e);
+        // 获取当前鼠标位置
+        console.log(this, e.target);
+        console.log(this === e.target);
+        let { offsetX: x, offsetY: y } = e;
+
+        x += e.target.offsetLeft;
+        y += e.target.offsetTop;
+
+        // 获取hero的宽高
+        const { offsetWidth: width, offsetHeight: height } = this;
+        console.log(width, height);
+        let xWalk = Math.round(x / width * walk - (walk / 2));
+        let yWalk = Math.round(y / height * walk - (walk / 2));
+
+        text.style.textShadow = `
+          ${xWalk}px ${yWalk}px 0 rgba(255,0,255,0.7),
+          ${xWalk * -1}px ${yWalk}px 0 rgba(0,255,255,0.7),
+          ${yWalk}px ${xWalk * -1}px 0 rgba(0,255,0,0.7),
+          ${yWalk * -1}px ${xWalk}px 0 rgba(0,0,255,0.7)
+        `;
+      })
+
+      // 箭头函数指向问题 在事件处理函数中，你使用了 箭头函数，导致 this 不再指向事件的目标元素（即 .hero 元素），而是继承外层函数的 this（全局对象 window）。因此：
+      // 这里的 this 指向 window，而 window.offsetWidth 和 window.offsetHeight 不存在，所以 width 和 height 为 undefined
+      // 方法 1：将箭头函数改为普通函数
+      // 方法 2：使用 e.currentTarget 替换this  e.currentTarget 始终指向事件监听器绑定的元素（.hero）
+
+      // document.querySelector('.hero').addEventListener('mousemove', (e) => {
+      //   // console.log(e);
+      //   // 获取当前鼠标位置
+      //   console.log(this, e.target);
+      //   console.log(this === e.target);
+      //   let { offsetX: x, offsetY: y } = e;
+
+      //   x += e.target.offsetLeft;
+      //   y += e.target.offsetTop;
+
+      //   // 获取hero的宽高
+      //   const { offsetWidth: width, offsetHeight: height } = this;
+      //   console.log(width, height);
+      //   let xWalk = x / width * walk;
+      //   let yWalk = y / height * walk;
+
+      //   text.stlye.textShadow = `
+      //     ${xWalk}px ${yWalk}px 0 rgba(255,0,255,0.7),
+      //   `;
+
+      // })
+    })()
+  </script>
+</body>
+
+</html>
