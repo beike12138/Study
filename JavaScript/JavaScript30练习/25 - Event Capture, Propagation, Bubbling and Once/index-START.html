@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Understanding JavaScript's Capture</title>
+  <link rel="icon" href="https://fav.farm/🔥" />
+</head>
+
+<body class="bod">
+
+  <div class="one">
+    <div class="two">
+      <div class="three">
+      </div>
+    </div>
+  </div>
+
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <ul>
+    <li><a href="#">button1</a></li>
+    <li><a href="#">button2</a></li>
+    <li><a href="#">button3</a></li>
+  </ul>
+  <style>
+    html {
+      box-sizing: border-box;
+    }
+
+    *,
+    *:before,
+    *:after {
+      box-sizing: inherit;
+    }
+
+    div {
+      width: 100%;
+      padding: 100px;
+    }
+
+    .one {
+      background: thistle;
+    }
+
+    .two {
+      background: mistyrose;
+    }
+
+    .three {
+      background: coral;
+    }
+  </style>
+
+  <button></button>
+  <script>
+    const divs = document.querySelectorAll('div');
+    const button = document.querySelector('button');
+
+    function logText(e) {
+      console.log(this.classList.value);
+      // e.stopPropagation(); // stop bubbling!
+      // console.log(this);
+    }
+
+    divs.forEach(div => div.addEventListener('click', logText, {
+      capture: false,
+      once: true
+    }));
+
+    button.addEventListener('click', () => {
+      console.log('Click!!!');
+    }, {
+      once: true
+    });
+
+
+    // //绑定
+    // const as = document.querySelectorAll('a');
+    // as.forEach(a => a.addEventListener('click', function (e) {
+    //   e.preventDefault();//阻止默认事件
+    //   console.log(this.textContent);
+    // }, {capture: false, once: false, passive: false}));
+    // // capture:false 默认为false不使用捕获 ,once:false 默认为false可重复点击,passive:false 默认为false,不阻止默认事件,
+
+    //委派
+    const ul = document.querySelector('ul');
+    ul.addEventListener('click', function (e) {
+      if (e.target.tagName === 'A') {
+        e.preventDefault();
+        console.log(e.target.textContent);
+      }
+    }, {capture: false, once: false, passive: false})
+  </script>
+</body>
+
+</html>
