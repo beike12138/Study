@@ -17,7 +17,7 @@ app.get("/request", (req, res) => {
   console.log(req.path); // /request
   console.log(req.query); //[Object: null prototype] { a: '100', b: '200' }
   res.send("hello / express");
-});
+});                  
 
 // 获取路由参数
 app.get("/get/:id", (req, res) => {
